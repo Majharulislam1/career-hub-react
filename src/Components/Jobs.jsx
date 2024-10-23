@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import Job from './Job';
+import { Link } from 'react-router-dom';
 
 const Jobs = () => {
 
@@ -29,7 +30,9 @@ const Jobs = () => {
                     </div>
 
                     <div className='text-center'>
+                        <Link to={'/all_job'}>
                         <button className="bg-gradient-to-r from-[#7e90fe] to-[#9873ff] text-white font-semibold px-4 py-2 rounded-lg">See all jobs</button>
+                         </Link>
                     </div>
 
                 </div>

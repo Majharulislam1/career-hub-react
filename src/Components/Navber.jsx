@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import './Common.css'
  
 
@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className="max-w-6xl mx-auto">
             <div className="py-6 flex justify-between items-center">
                  <div>
-                     <h1 className="text-3xl font-semibold">CareerHub</h1>
+                      <Link to={'/'}> <h1 className="text-3xl font-semibold">CareerHub</h1></Link>
                  </div>
                  <div>
                        <NavLink className='text-[#757575] mr-4 text-[1rem] active'>Statistics</NavLink>

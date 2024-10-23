@@ -1,6 +1,7 @@
 import google from '../assets/logo/google.png'
 import location from '../assets/icons/Location.png'
 import dolar from '../assets/icons/money.png'
+import { Link } from 'react-router-dom';
 
 const Job = ({job}) => {
 
@@ -43,7 +44,9 @@ const Job = ({job}) => {
                                     </div>
                                 </div>
                                 <div>
-                                    <button className="bg-gradient-to-r from-[#7e90fe] to-[#9873ff] text-white font-semibold px-4 py-2 rounded-lg">View Details</button>
+                                    <Link to={`/job_details/${id}`}>
+                                        <button className="bg-gradient-to-r from-[#7e90fe] to-[#9873ff] text-white font-semibold px-4 py-2 rounded-lg">View Details</button>
+                                    </Link>
                                 </div>
                             </div>
 

@@ -4,3 +4,9 @@
     -webkit-text-fill-color: transparent;
     font-weight: 700;
 }
+
+.bg_images{
+     background-image: url('../assets/images/bg1.png');
+     background-repeat: no-repeat;
+     background-size: contain;
+}
