@@ -12,8 +12,8 @@ const Navbar = () => {
                       <Link to={'/'}> <h1 className="text-3xl font-semibold">CareerHub</h1></Link>
                  </div>
                  <div>
-                       <NavLink className='text-[#757575] mr-4 text-[1rem] active'>Statistics</NavLink>
-                       <NavLink className='text-[#757575] mr-4 text-[1rem]'>Applied Jobs</NavLink>
+                       <NavLink to={'/'} className='text-[#757575] mr-4 text-[1rem]'>Statistics</NavLink>
+                       <NavLink to={'/applied_job'} className='text-[#757575] mr-4 text-[1rem]'>Applied Jobs</NavLink>
                        <NavLink className='text-[#757575] mr-4 text-[1rem]'>Blog</NavLink>
                  </div>
                  <div>

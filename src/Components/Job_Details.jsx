@@ -1,17 +1,45 @@
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './Common.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { saveApplication } from '../Utility/localStorage';
+import { useEffect, useState } from 'react';
  
 
 const Job_Details = () => {
 
     const { id } = useParams();
 
-    const data = useLoaderData();
+    // const data = useLoaderData();
 
-    const find_job = data.find(job_id => job_id.id === parseInt(id));
+     
 
-    const { job_title, salary, job_description, job_responsibility, educational_requirements, experiences, contact_information } = find_job;
+    const [jobData, setJobData] = useState(null); // To store job details
 
+    useEffect(() => {
+        fetch('/jobs.json')
+            .then((res) => res.json())
+            .then((data) => {
+                const job = data.find((job) => job.id === parseInt(id));
+                setJobData(job); 
+              
+            })
+            .catch((error) => console.error('Error fetching job data:', error));
+    }, [id]);
+    
+    if(!jobData){
+        return <span>Loading-----</span>
+    }
+    
+
+    const { job_title, salary, job_description, job_responsibility, educational_requirements, experiences, contact_information} = jobData;
+
+    const handleJobApplication =(id)=>{
+          saveApplication(id);
+          toast.success('Successfully Applied the jobs')
+    }
+
+    
 
 
 
@@ -73,7 +101,7 @@ const Job_Details = () => {
                          </div>
 
                          <div>
-                             <button className='text-center py-4 w-full font-semibold rounded-lg text-white  bg-gradient-to-r from-[rgb(126,144,254)] to-[rgb(152,115,255)]'>Apply Now</button>
+                             <button onClick={()=>handleJobApplication(id)} className='text-center py-4 w-full font-semibold rounded-lg text-white  bg-gradient-to-r from-[rgb(126,144,254)] to-[rgb(152,115,255)]'>Apply Now</button>
                          </div>
                     </div>
                 </div>
@@ -82,6 +110,7 @@ const Job_Details = () => {
             <div className='py-10'>
 
             </div>
+            <ToastContainer />
         </>
     );
 };
