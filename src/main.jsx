@@ -12,6 +12,9 @@ import Home from './Components/Home';
 import All_Job from './Components/All_Job';
 import Job_Details from './Components/Job_Details';
 import Applied_Job from './Components/Applied_Job';
+import Registration from './Components/Registration';
+import Login from './Components/Login';
+import PrivetRoute from './Components/PrivetRoute';
 
 const router = createBrowserRouter([
   {
@@ -28,12 +31,23 @@ const router = createBrowserRouter([
       },
       {
          path:'/applied_job',
-         element:<Applied_Job></Applied_Job>,
+         element:<PrivetRoute><Applied_Job></Applied_Job>,</PrivetRoute>,
          loader:()=>fetch('jobs.json'),
       },
       {
          path:'/job_details/:id',
-         element: <Job_Details></Job_Details>
+         element: <PrivetRoute><Job_Details></Job_Details></PrivetRoute>
+      },
+      {
+         path:'/registration',
+         element:<Registration></Registration>
+
+      }
+      ,
+      {
+         path:'/login',
+         element:<Login></Login>
+
       }
     ]
   },

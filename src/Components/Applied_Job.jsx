@@ -1,35 +1,24 @@
-import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import { getStrodeCard } from "../Utility/localStorage";
+ 
+import { useParams } from "react-router-dom";
+import { LoadContext } from "./Root";
+import { useContext, useEffect, useState } from "react";
+import Apply from "./Apply";
 
  
 
 const Applied_Job = () => {
 
+ 
+    const {jobs,appliedJob} = useContext(LoadContext);
+     
 
-    const jobs = useLoaderData();
-
-    const [applied_Job,setApplied_Job] = useState([]);
-    console.log(applied_Job);
     useEffect(() => {
-        const storedJobIds = getStrodeCard();
-        if (jobs.length > 0) {
-
-
-            
-
-            const jobsApplied = [];
-            for (const id of storedJobIds) {
-                const job = jobs.find(job => job.id === id);
-                if (job) {
-                    jobsApplied.push(job)
-                }
-            }
-            setApplied_Job(jobsApplied);
-             
-             
-        }
-    }, [jobs])
+        //  console.log(appliedJob);
+    }, [appliedJob]);
+    
+    if(!appliedJob){
+        return <span>Loading-----</span>
+    }
 
 
     return (
@@ -38,7 +27,13 @@ const Applied_Job = () => {
                 <h1 className="text-2xl font-bold">Applied Jobs</h1>
             </div>
             <div className='py-10'>
+                   <div className="w-4/5 mx-auto">
+                         
+                         {
+                            appliedJob.map(jb => <Apply key={jb.id} apply={jb}></Apply>)
+                         }
 
+                   </div>
             </div>
         </div>
     );
